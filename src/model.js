@@ -1,5 +1,5 @@
 async function getWeatherData(loc,units){
-    const key = "NJYG6EQAQSJ464TVAPQ5TTB93";
+    const key = "NJYG6EQAQSJ464TVAPQ5TTB93"; // Free tier key don't bother
     const query = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${loc}/next7days?unitGroup=${units}&include=hours&key=${key}&contentType=json`
 
     try{
@@ -29,6 +29,17 @@ function processJson(jsonData){
         const dayHigh = day.tempmax
         const dayLow = day.tempmin
         const dayData = new Day(dateTime,dayHigh,dayLow)
+        day.hours.forEach((hour) => {
+            const hourData = new Hour(
+                hour.dateTime,
+                hour.temp,
+                hour.feelslike,
+                hour.precipprob,
+                hour.preciptype,
+                hour.cloudcover
+            )
+            dayData.addHour(hourData)
+        })
         days.push(dayData)
     });
 
@@ -67,7 +78,38 @@ class Day{
 }
 
 class Hour{
+    constructor(temp, feelsLike, precip, precipProb, precipType, cloudCover){
+        this.temp = temp
+        this.feelsLike = feelsLike
+        this.precip = precip
+        this.precipProb = precipProb
+        this.precipType = precipType
+        this.cloudCover = cloudCover
+    }
 
+    getTemp(){
+        return this.temp
+    }
+
+    getFeelsLike(){
+        return this.feelsLike
+    }
+
+    getPrecipProb(){
+        return Math.floor(this.precipProb)
+    }
+
+    getWeatherType(){
+        if(this.cloudCover > 88){
+            return "overcast"
+        }else if(this.cloudCover > 60){
+            return "cloudy"
+        }else if(this.cloudCover > 25){
+            return "cloudy intervals"
+        }else{
+            return "clear"
+        }
+    }
 }
 
 export {getWeatherData}
