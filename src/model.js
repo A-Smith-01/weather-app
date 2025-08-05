@@ -31,7 +31,7 @@ function processJson(jsonData){
         const dayData = new Day(dateTime,dayHigh,dayLow)
         day.hours.forEach((hour) => {
             const hourData = new Hour(
-                hour.dateTime,
+                hour.datetime,
                 hour.temp,
                 hour.feelslike,
                 hour.precipprob,
@@ -78,13 +78,18 @@ class Day{
 }
 
 class Hour{
-    constructor(temp, feelsLike, precip, precipProb, precipType, cloudCover){
+    constructor(dateTime, temp, feelsLike, precipProb, precipType, cloudCover){
+        this.dateTime = dateTime
         this.temp = temp
         this.feelsLike = feelsLike
-        this.precip = precip
+        // this.precip = precip
         this.precipProb = precipProb
         this.precipType = precipType
         this.cloudCover = cloudCover
+    }
+
+    getDateTime(){
+        return this.dateTime
     }
 
     getTemp(){
