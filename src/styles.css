@@ -42,7 +42,7 @@ body, html{
 
 header{
     height: max-content;
-    padding: 40px;
+    padding: 20px;
     background-color: var(--header-background);
     color: var(--header-text);
 }
@@ -102,4 +102,110 @@ header{
 .search button{
     background: none;
     border: none;
+}
+
+/**
+************ WEATHER PAGE TOP ************
+**/
+
+.search-tabs-container{
+    background-image: url("./assets/background1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+}
+
+.weather-display .search{
+    background: none;
+    margin-top: 0px
+}
+
+.search-tabs-container ul{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.day-tabs-container{
+    max-width: 1280px;
+    margin: 0px auto 0px auto;
+}
+
+.search-tabs-container li{
+    width: 100%;
+    background-color: rgb(235, 235, 235);
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+.search-tabs-container li:first-child{
+    border-radius: 8px 0px 0px 0px;
+}
+
+.search-tabs-container li:last-child{
+    border-radius: 0px 8px 0px 0px;
+}
+
+.search-tabs-container .selected{
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid gray;
+    padding: 10px;
+    border-bottom: none;
+}
+
+.search-tabs-container li > div{
+    display: flex;
+    justify-content: space-between;
+}
+.search-tabs-container li > div > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.day-tabs-container .icon{
+    height: 50px;
+    width: 50px;
+}
+
+.search-tabs-container .maxTemp{
+    font-size: 1.5rem;
+}
+
+/**
+************ WEATHER PAGE BOTTOM ************
+**/
+
+.weather-data{
+    max-width: 1280px;
+    margin: 0 auto;
+    overflow: scroll;
+}
+
+table .icon{
+    width: 48px;
+    height: 48px;
+}
+
+table{
+    border-spacing: 0px;
+}
+
+thead{
+    background-color: rgb(235, 235, 235);
+}
+
+td{
+    padding-top: 32px;
+    text-align: center;
+}
+
+td:not(:last-child){
+    border-right: 1px solid darkgrey;
+}
+
+.time-hours{
+    padding: 0px 12px 6px;
 }

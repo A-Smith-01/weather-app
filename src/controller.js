@@ -1,14 +1,15 @@
 import { makeHomePage } from "./search"
 import {getWeatherData} from "./model"
+import { makeWeatherPage } from "./weather"
 
 function init(){
+    const days = searchfunc("Epsom")
 
-    loadContent(makeHomePage(searchfunc))
+    days.then((data) => {loadContent(makeWeatherPage(data,searchfunc))})
 }
 
-function searchfunc(input){
-    const data = getWeatherData(input,"uk")
-    data.then((data) => {
+async function searchfunc(input){
+    const data = await getWeatherData(input,"uk")
     if(!data){
         console.log("Error fetching data")
         return;
@@ -16,7 +17,7 @@ function searchfunc(input){
     data.forEach(day => {
         console.log(`Date: ${day.getDateTime()} Max temp: ${day.getMaxTemp()} Min Temp: ${day.getMinTemp()}`)
     })
-})
+    return data
 }
 
 function loadContent(page){

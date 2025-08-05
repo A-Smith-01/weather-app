@@ -51,7 +51,7 @@ function processJson(jsonData){
 class Day{
     hours = []
     constructor(dateTime, max, min){
-        this.dateTime = dateTime
+        this.dateTime = new Date(dateTime)
         this.maxTemp = max
         this.minTemp = min
     }

@@ -13,13 +13,183 @@
         <h1>Weather app</h1>
     </header>
     <div class="content">
-        <div class="search-background">
-            <div class="search">
-                <h1>Find a Forecast</h1>
-                <div class="form">
-                    <input type="text" id="search" placeholder="Search for a place">
-                    <button class="clickable"><img class="icon" src="./icons/search.svg" alt=""></button>
+        <div class="weather-display">
+            <div class="search-tabs-container">
+                <div class="search">
+                    <div class="form">
+                        <input type="text" id="search" placeholder="Search for a place">
+                        <button class="clickable"><img class="icon" src="./icons/search.svg" alt=""></button>
+                    </div>
                 </div>
+                <div class="day-tabs-container">
+                    <ul>
+                        <li class="selected">
+                            <time datetime="">Today</time>
+                            <div>
+                                <img src="./icons/weather-icons-01-svgrepo-com.svg" alt="" class="icon">
+                                <div class="day-temp-data"><span class="maxTemp">15</span><span class="minTemp">10</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <time datetime="">Wed 6 Aug</time>
+                            <div>
+                                <img src="./icons/weather-icons-01-svgrepo-com.svg" alt="" class="icon">
+                                <div class="day-temp-data"><span class="maxTemp">16</span><span class="minTemp">13</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <time datetime="">Wed 6 Aug</time>
+                            <div>
+                                <img src="./icons/weather-icons-01-svgrepo-com.svg" alt="" class="icon">
+                                <div class="day-temp-data"><span class="maxTemp">16</span><span class="minTemp">12</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <time datetime="">Wed 6 Aug</time>
+                            <div>
+                                <img src="./icons/weather-icons-01-svgrepo-com.svg" alt="" class="icon">
+                                <div class="day-temp-data"><span class="maxTemp">17</span><span class="minTemp">13</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <time datetime="">Wed 6 Aug</time>
+                            <div>
+                                <img src="./icons/weather-icons-01-svgrepo-com.svg" alt="" class="icon">
+                                <div class="day-temp-data"><span class="maxTemp">16</span><span class="minTemp">12</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <time datetime="">Wed 6 Aug</time>
+                            <div>
+                                <img src="./icons/weather-icons-01-svgrepo-com.svg" alt="" class="icon">
+                                <div class="day-temp-data"><span class="maxTemp">18</span><span class="minTemp">12</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <time datetime="">Wed 6 Aug</time>
+                            <div>
+                                <img src="./icons/weather-icons-01-svgrepo-com.svg" alt="" class="icon">
+                                <div class="day-temp-data"><span class="maxTemp">16</span><span class="minTemp">12</span></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="weather-data">
+                <table>
+                    <thead>
+                        <tr class="time">
+                            <td>
+                                <div class="time-hours">10:00</div>
+                            </td>
+                            <td>
+                                <div class="time-hours">11:00</div>
+                            </td>
+                            <td>
+                                <div class="time-hours">12:00</div>
+                            </td>
+                            <td>
+                                <div class="time-hours">13:00</div>
+                            </td>
+                            <td>
+                                <div class="time-hours">14:00</div>
+                            </td>
+                            <td>
+                                <div class="time-hours">15:00</div>
+                            </td>
+                            <td>
+                                <div class="time-hours">16:00</div>
+                            </td>
+                            <td>
+                                <div class="time-hours">17:00</div>
+                            </td>
+                            <td>
+                                <div class="time-hours">18:00</div>
+                            </td>
+                            <td>
+                                <div class="time-hours">19:00</div>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="./icons/weather-icons-16-svgrepo-com.svg" alt="" class="icon"></td>
+                            <td><img src="./icons/weather-icons-16-svgrepo-com.svg" alt="" class="icon"></td>
+                            <td><img src="./icons/weather-icons-16-svgrepo-com.svg" alt="" class="icon"></td>
+                            <td><img src="./icons/weather-icons-16-svgrepo-com.svg" alt="" class="icon"></td>
+                            <td><img src="./icons/weather-icons-16-svgrepo-com.svg" alt="" class="icon"></td>
+                            <td><img src="./icons/weather-icons-16-svgrepo-com.svg" alt="" class="icon"></td>
+                            <td><img src="./icons/weather-icons-16-svgrepo-com.svg" alt="" class="icon"></td>
+                            <td><img src="./icons/weather-icons-16-svgrepo-com.svg" alt="" class="icon"></td>
+                            <td><img src="./icons/weather-icons-16-svgrepo-com.svg" alt="" class="icon"></td>
+                            <td><img src="./icons/weather-icons-16-svgrepo-com.svg" alt="" class="icon"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>10%</div>
+                            </td>
+                            <td>
+                                <div>10%</div>
+                            </td>
+                            <td>
+                                <div>10%</div>
+                            </td>
+                            <td>
+                                <div>10%</div>
+                            </td>
+                            <td>
+                                <div>10%</div>
+                            </td>
+                            <td>
+                                <div>10%</div>
+                            </td>
+                            <td>
+                                <div>10%</div>
+                            </td>
+                            <td>
+                                <div>10%</div>
+                            </td>
+                            <td>
+                                <div>10%</div>
+                            </td>
+                            <td>
+                                <div>10%</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>17°</div>
+                            </td>
+                            <td>
+                                <div>17°</div>
+                            </td>
+                            <td>
+                                <div>17°</div>
+                            </td>
+                            <td>
+                                <div>17°</div>
+                            </td>
+                            <td>
+                                <div>17°</div>
+                            </td>
+                            <td>
+                                <div>17°</div>
+                            </td>
+                            <td>
+                                <div>17°</div>
+                            </td>
+                            <td>
+                                <div>17°</div>
+                            </td>
+                            <td>
+                                <div>17°</div>
+                            </td>
+                            <td>
+                                <div>17°</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
