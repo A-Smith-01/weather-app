@@ -12,9 +12,6 @@ function makeWeatherPage(days, searchfunc){
     const search = document.createElement("div")
     search.classList.add("search")
 
-    const head = document.createElement("h1")
-    head.textContent = "Find a Forecast"
-
     const form = document.createElement("div")
     form.classList.add("form")
 
@@ -32,7 +29,6 @@ function makeWeatherPage(days, searchfunc){
     button.appendChild(icon)
     form.appendChild(input)
     form.appendChild(button)
-    search.appendChild(head)
     search.appendChild(form)
 
     const container = document.createElement("div")
@@ -105,8 +101,13 @@ function makeDayTable(day){
     const headRow = document.createElement("tr")
     const body = document.createElement("tbody")
     const iconRow = document.createElement("tr")
+    iconRow.classList.add("icon-row")
     const precipRow = document.createElement("tr")
+    precipRow.classList.add("precip-row")
     const tempRow = document.createElement("tr")
+    tempRow.classList.add("temp-row")
+
+    const {min,max} = getMinMaxTemp(day.getHours())
 
     day.getHours().forEach((hour) => {
         // Time
@@ -116,6 +117,18 @@ function makeDayTable(day){
         time.textContent = formatHour(hour.getDateTime())
         timeData.appendChild(time)
         headRow.appendChild(timeData)
+
+        const yOffSet = getPosition(getScalar(hour.getTemp(),min,max))
+        console.log(yOffSet)
+
+        // Temperature
+        const tempData = document.createElement("td")
+        const temp = document.createElement("div")
+        temp.classList.add("temp-value")
+        temp.textContent = `${hour.getTemp()}°`
+        temp.style.bottom = `${yOffSet.toString()}px`
+        tempData.appendChild(temp)
+        tempRow.appendChild(tempData)
 
         // Weather icon
         const iconData = document.createElement("td")
@@ -131,20 +144,13 @@ function makeDayTable(day){
         precip.textContent = `${hour.getPrecipProb()}%`
         precipData.appendChild(precip)
         precipRow.appendChild(precipData)
-
-        // Temperature
-        const tempData = document.createElement("td")
-        const temp = document.createElement("div")
-        temp.textContent = `${hour.getTemp()}°`
-        tempData.appendChild(temp)
-        tempRow.appendChild(tempData)
     })
 
     head.appendChild(headRow)
     table.appendChild(head)
+    body.appendChild(tempRow)
     body.appendChild(iconRow)
     body.appendChild(precipRow)
-    body.appendChild(tempRow)
     table.appendChild(body)
 
     return table
@@ -154,10 +160,29 @@ function formatHour(date) {
     return date.toString().slice(0,5)
 }
 
-function generateTempColour(temp){
-    if(temp > 0){
-        
-    }
+function getMinMaxTemp(days){
+    let min = 500
+    let max = -500
+    days.forEach((day) => {
+        if(day.getTemp() < min){
+            min = day.getTemp()
+        }
+        if(day.getTemp() > max){
+            max = day.getTemp()
+        }
+    })
+
+    return {min,max}
+}
+
+function getScalar(temp,min,max){
+    return (temp-min)/(max-min)
+}
+
+function getPosition(scalar){
+    const min = 0
+    const max = 70
+    return min+(max-min)*scalar
 }
 
 export {makeWeatherPage}

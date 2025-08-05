@@ -69,11 +69,11 @@ class Day{
     }
 
     getMaxTemp(){
-        return this.maxTemp
+        return Math.floor(this.maxTemp)
     }
 
     getMinTemp(){
-        return this.minTemp
+        return Math.floor(this.minTemp)
     }
 }
 
@@ -93,7 +93,7 @@ class Hour{
     }
 
     getTemp(){
-        return this.temp
+        return Math.floor(this.temp)
     }
 
     getFeelsLike(){

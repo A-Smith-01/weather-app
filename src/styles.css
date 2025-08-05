@@ -209,3 +209,12 @@ td:not(:last-child){
 .time-hours{
     padding: 0px 12px 6px;
 }
+
+.temp-row > td{
+    position: relative;
+    height: 60px;
+}
+
+.temp-value{
+    position: absolute;
+}
