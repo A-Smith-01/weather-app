@@ -45,7 +45,7 @@ function processJson(jsonData){
 
     console.log(days)
 
-    return days
+    return {loc, days}
 }
 
 class Day{

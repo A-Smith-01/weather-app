@@ -202,6 +202,12 @@ thead{
     background-color: rgb(235, 235, 235);
 }
 
+th{
+    position: absolute;
+    font-weight: 200;
+    font-size: 0.8rem;
+}
+
 td{
     padding-top: 32px;
     text-align: center;
@@ -217,7 +223,7 @@ td:not(:last-child){
 
 .temp-row > td{
     position: relative;
-    height: 60px;
+    height: 80px;
 }
 
 .temp-value{

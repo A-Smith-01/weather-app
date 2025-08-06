@@ -1,7 +1,7 @@
 import icon1 from "./icons/weather-icons-01-svgrepo-com.svg"
 import searchIcon from "./icons/search.svg"
 
-function makeWeatherPage(days, searchfunc){
+function makeWeatherPage(loc, days, searchfunc){
     console.log(days)
     const display = document.createElement("div")
     display.classList.add("weather-display")
@@ -17,6 +17,7 @@ function makeWeatherPage(days, searchfunc){
 
     const input = document.createElement("input")
     input.setAttribute("type","text")
+    input.value = loc
 
     const button = document.createElement("button")
     button.classList.add("clickable")
@@ -51,8 +52,8 @@ function makeWeatherPage(days, searchfunc){
 
         date.dateTime = day.getDateTime().toISOString()
         date.textContent = formatDay(day.getDateTime())
-        tMax.textContent = day.maxTemp
-        tMin.textContent = day.minTemp
+        tMax.textContent = Math.floor(day.maxTemp)
+        tMin.textContent = Math.floor(day.minTemp)
 
         // TODO: CHANGE TO NOT STATIC
         weatherIcon.src = icon1
@@ -101,7 +102,6 @@ function formatDay(date){
 }
 
 function clearSelected(list){
-    console.log(list)
     for(const li of list.children){
         li.classList.remove("selected")
     }
@@ -111,12 +111,26 @@ function makeDayTable(day){
     const table = document.createElement("table")
     const head = document.createElement("thead")
     const headRow = document.createElement("tr")
+    const headHead = document.createElement("th")
+    headRow.appendChild(headHead)
+
     const body = document.createElement("tbody")
     const iconRow = document.createElement("tr")
+    const iconHead = document.createElement("th")
+    iconHead.textContent = "Weather Symbols"
+    iconRow.appendChild(iconHead)
     iconRow.classList.add("icon-row")
+
     const precipRow = document.createElement("tr")
+    const precipHead = document.createElement("th")
+    precipHead.textContent = "Chance of precipitation"
+    precipRow.appendChild(precipHead)
     precipRow.classList.add("precip-row")
+
     const tempRow = document.createElement("tr")
+    const tempHead = document.createElement("th")
+    tempHead.textContent = "Temperature (°C)"
+    tempRow.appendChild(tempHead)
     tempRow.classList.add("temp-row")
 
     const {min,max} = getMinMaxTemp(day.getHours())
@@ -131,8 +145,6 @@ function makeDayTable(day){
         headRow.appendChild(timeData)
 
         const yOffSet = getPosition(getScalar(hour.getTemp(),min,max))
-        console.log(yOffSet)
-
         // Temperature
         const tempData = document.createElement("td")
         const temp = document.createElement("div")
