@@ -104,6 +104,13 @@ header{
     border: none;
 }
 
+.search .error{
+    color:rgb(255, 3, 3);
+    font-size: 1rem;
+    font-weight: 200;
+    text-align: left;
+}
+
 /**
 ************ WEATHER PAGE TOP ************
 **/

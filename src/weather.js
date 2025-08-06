@@ -1,5 +1,5 @@
 import icon1 from "./icons/weather-icons-01-svgrepo-com.svg"
-import searchIcon from "./icons/search.svg"
+import { makeSearchBar } from "./search-bar"
 
 function makeWeatherPage(loc, days, searchfunc){
     console.log(days)
@@ -9,28 +9,7 @@ function makeWeatherPage(loc, days, searchfunc){
     const topContainer = document.createElement("div")
     topContainer.classList.add("search-tabs-container")
 
-    const search = document.createElement("div")
-    search.classList.add("search")
-
-    const form = document.createElement("div")
-    form.classList.add("form")
-
-    const input = document.createElement("input")
-    input.setAttribute("type","text")
-    input.value = loc
-
-    const button = document.createElement("button")
-    button.classList.add("clickable")
-    const icon = document.createElement("img")
-    icon.classList.add("icon")
-    icon.src = searchIcon
-
-    button.addEventListener("click",() => {searchfunc(input.value)})
-
-    button.appendChild(icon)
-    form.appendChild(input)
-    form.appendChild(button)
-    search.appendChild(form)
+    topContainer.appendChild(makeSearchBar(searchfunc,loc))
 
     const container = document.createElement("div")
     container.classList.add("day-tabs-container")
@@ -76,7 +55,6 @@ function makeWeatherPage(loc, days, searchfunc){
     });
 
     container.appendChild(list)
-    topContainer.appendChild(search)
     topContainer.appendChild(container)
 
     display.appendChild(topContainer)
