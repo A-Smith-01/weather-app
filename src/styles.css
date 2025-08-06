@@ -195,6 +195,7 @@ table .icon{
 
 table{
     border-spacing: 0px;
+    padding-bottom: 10px;
 }
 
 thead{
@@ -221,4 +222,6 @@ td:not(:last-child){
 
 .temp-value{
     position: absolute;
+    left: 50%;
+    transform: translate(-50%,0%);
 }
