@@ -65,6 +65,13 @@ function makeWeatherPage(days, searchfunc){
         listItem.appendChild(div)
 
         list.appendChild(listItem)
+
+        listItem.classList.add("clickable")
+        listItem.addEventListener("click",() => {
+            clearSelected(list)
+            listItem.classList.add("selected")
+            weatherData.replaceChildren(makeDayTable(day))
+        })
     });
 
     container.appendChild(list)
@@ -77,6 +84,8 @@ function makeWeatherPage(days, searchfunc){
     const weatherData = document.createElement("div")
     weatherData.classList.add("weather-data")
 
+    // Load Today's Weather as default
+    list.firstChild.classList.add("selected")
     weatherData.replaceChildren(makeDayTable(days[0]))
     display.appendChild(weatherData)
 
@@ -91,8 +100,11 @@ function formatDay(date){
     return `${dayNames[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]}`
 }
 
-function setSelectedDay(day,container){
-    
+function clearSelected(list){
+    console.log(list)
+    for(const li of list.children){
+        li.classList.remove("selected")
+    }
 }
 
 function makeDayTable(day){
