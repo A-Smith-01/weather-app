@@ -47,6 +47,10 @@ header{
     color: var(--header-text);
 }
 
+header .clickable{
+    text-decoration: none;
+}
+
 /**
 ************ HOMEPAGE ************
 **/

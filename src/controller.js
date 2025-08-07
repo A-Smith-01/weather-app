@@ -3,6 +3,11 @@ import {getWeatherData} from "./model"
 import { makeWeatherPage } from "./weather"
 
 function init(){
+    const titleBut = document.querySelector("header h1")
+    titleBut.addEventListener("click",() =>{
+        loadContent(makeHomePage(showWeatherPage))
+    })
+
     loadContent(makeHomePage(showWeatherPage))
 
     
