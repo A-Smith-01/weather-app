@@ -228,12 +228,12 @@ td:not(:last-child){
     padding: 0px 12px 6px;
 }
 
-.temp-row > td{
+.icon-row > td{
     position: relative;
     height: 80px;
 }
 
-.temp-value{
+.icon-row img{
     position: absolute;
     left: 50%;
     transform: translate(-50%,0%);

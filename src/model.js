@@ -12,7 +12,7 @@ async function getWeatherData(loc,units){
     const jsonData = await response.json()
     console.log(jsonData)
 
-    return processJson(jsonData)
+    return jsonData
 }
 
 function processJson(jsonData){
@@ -100,15 +100,16 @@ class Hour{
     }
 
     getWeatherType(){
+        const weatherType = "clear"
         if(this.cloudCover > 88){
-            return "overcast"
+            weatherType = "cloudy"
         }else if(this.cloudCover > 60){
-            return "cloudy"
+            weatherType = "cloudy"
         }else if(this.cloudCover > 25){
-            return "cloudy intervals"
-        }else{
-            return "clear"
+            weatherType = "cloudy intervals"
         }
+        precip
+
     }
 }
 

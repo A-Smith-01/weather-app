@@ -10,7 +10,7 @@ function init(){
 
 async function showWeatherPage(input){
     const data = await getWeatherData(input,"uk")
-    loadContent(makeWeatherPage(data.loc, data.days, showWeatherPage))
+    loadContent(makeWeatherPage(data.resolvedAddress, data.days, showWeatherPage))
 }
 
 // async function searchfunc(input){

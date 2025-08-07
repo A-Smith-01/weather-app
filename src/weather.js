@@ -1,4 +1,4 @@
-import icon1 from "./icons/weather-icons-01-svgrepo-com.svg"
+import questionMark from "./icons/question-mark.svg"
 import { makeSearchBar } from "./search-bar"
 
 function makeWeatherPage(loc, days, searchfunc){
@@ -29,13 +29,18 @@ function makeWeatherPage(loc, days, searchfunc){
         tMax.classList.add("maxTemp")
         tMin.classList.add("minTemp")
 
-        date.dateTime = day.getDateTime().toISOString()
-        date.textContent = formatDay(day.getDateTime())
-        tMax.textContent = Math.floor(day.maxTemp)
-        tMin.textContent = Math.floor(day.minTemp)
+        date.dateTime = new Date(day.datetime).toISOString()
+        date.textContent = formatDay(new Date(day.datetime))
+        tMax.textContent = Math.floor(day.tempmax)
+        tMin.textContent = Math.floor(day.tempmin)
 
         // TODO: CHANGE TO NOT STATIC
-        weatherIcon.src = icon1
+        import(`./icons/${day.icon}.svg`).then((iconSrc) => {
+            weatherIcon.src = iconSrc.default
+        }).catch((err) => {
+            console.log(err)
+            weatherIcon.src = questionMark
+        })
 
         temps.appendChild(tMax)
         temps.appendChild(tMin)
@@ -111,24 +116,23 @@ function makeDayTable(day){
     tempRow.appendChild(tempHead)
     tempRow.classList.add("temp-row")
 
-    const {min,max} = getMinMaxTemp(day.getHours())
+    const {min,max} = getMinMaxTemp(day.hours)
 
-    day.getHours().forEach((hour) => {
+    day.hours.forEach((hour) => {
         // Time
         const timeData = document.createElement("td")
         const time = document.createElement("div")
         time.classList.add("time-hours")
-        time.textContent = formatHour(hour.getDateTime())
+        time.textContent = formatHour(hour.datetime)
         timeData.appendChild(time)
         headRow.appendChild(timeData)
 
-        const yOffSet = getPosition(getScalar(hour.getTemp(),min,max))
+        const yOffSet = getPosition(getScalar(hour.temp,min,max))
         // Temperature
         const tempData = document.createElement("td")
         const temp = document.createElement("div")
         temp.classList.add("temp-value")
-        temp.textContent = `${hour.getTemp()}°`
-        temp.style.bottom = `${yOffSet.toString()}px`
+        temp.textContent = `${Math.floor(hour.temp)}°`
         tempData.appendChild(temp)
         tempRow.appendChild(tempData)
 
@@ -136,22 +140,28 @@ function makeDayTable(day){
         const iconData = document.createElement("td")
         const icon = document.createElement("img")
         icon.classList.add("icon")
-        icon.src = icon1
+        icon.style.bottom = `${yOffSet.toString()}px`
         iconData.appendChild(icon)
         iconRow.appendChild(iconData)
+        import(`./icons/${hour.icon}.svg`).then((iconSrc) => {
+            icon.src = iconSrc.default
+        }).catch((err) => {
+            console.log(err)
+            icon.src = questionMark
+        })
 
         // Precip chance
         const precipData = document.createElement("td")
         const precip = document.createElement("div")
-        precip.textContent = `${hour.getPrecipProb()}%`
+        precip.textContent = `${hour.precipprob}%`
         precipData.appendChild(precip)
         precipRow.appendChild(precipData)
     })
 
     head.appendChild(headRow)
     table.appendChild(head)
-    body.appendChild(tempRow)
     body.appendChild(iconRow)
+    body.appendChild(tempRow)
     body.appendChild(precipRow)
     table.appendChild(body)
 
@@ -162,15 +172,15 @@ function formatHour(date) {
     return date.toString().slice(0,5)
 }
 
-function getMinMaxTemp(days){
+function getMinMaxTemp(hours){
     let min = 500
     let max = -500
-    days.forEach((day) => {
-        if(day.getTemp() < min){
-            min = day.getTemp()
+    hours.forEach((hour) => {
+        if(hour.temp < min){
+            min = hour.temp
         }
-        if(day.getTemp() > max){
-            max = day.getTemp()
+        if(hour.temp > max){
+            max = hour.temp
         }
     })
 

@@ -7,6 +7,7 @@ function makeSearchBar(searchfunc, loc){
     const form = document.createElement("div")
     form.classList.add("form")
 
+    // Add header if needed
     if(!loc){
         const head = document.createElement("h1")
         head.textContent = "Find a Forecast"
@@ -25,12 +26,15 @@ function makeSearchBar(searchfunc, loc){
     icon.classList.add("icon")
     icon.src = searchIcon
 
+    // Error message
     const errMessage = document.createElement("span")
     errMessage.classList.add("error")
     errMessage.classList.add("hidden")
 
+    // Attach event listener
     button.addEventListener("click",() => {
         searchfunc(input.value).catch((err)=>{
+            console.log(err)
             errMessage.textContent = err.message
             errMessage.classList.toggle("hidden")
         })
