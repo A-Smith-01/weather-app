@@ -13,18 +13,6 @@ async function showWeatherPage(input){
     loadContent(makeWeatherPage(data.resolvedAddress, data.days, showWeatherPage))
 }
 
-// async function searchfunc(input){
-//     const data = 
-//     if(!data){
-//         console.log("Error fetching data")
-//         return false;
-//     }
-//     // data.forEach(day => {
-//     //     console.log(`Date: ${day.getDateTime()} Max temp: ${day.getMaxTemp()} Min Temp: ${day.getMinTemp()}`)
-//     // })
-//     return data
-// }
-
 function loadContent(page){
     const content = document.querySelector("div.content")
     content.replaceChildren(page)
