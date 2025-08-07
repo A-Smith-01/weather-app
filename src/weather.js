@@ -153,7 +153,7 @@ function makeDayTable(day){
         // Precip chance
         const precipData = document.createElement("td")
         const precip = document.createElement("div")
-        precip.textContent = `${hour.precipprob}%`
+        precip.textContent = formatPrecipChance(hour.precipprob)
         precipData.appendChild(precip)
         precipRow.appendChild(precipData)
     })
@@ -195,6 +195,14 @@ function getPosition(scalar){
     const min = 0
     const max = 70
     return min+(max-min)*scalar
+}
+
+function formatPrecipChance(precipChance){
+    if(precipChance<5){
+        return ">5%"
+    }
+
+    return `${10*Math.floor(precipChance/10)}%`
 }
 
 export {makeWeatherPage}
