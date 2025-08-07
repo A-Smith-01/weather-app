@@ -33,11 +33,13 @@ function makeSearchBar(searchfunc, loc){
 
     // Attach event listener
     button.addEventListener("click",() => {
-        searchfunc(input.value).catch((err)=>{
-            console.log(err)
-            errMessage.textContent = err.message
-            errMessage.classList.toggle("hidden")
-        })
+        if(input.value){
+            searchfunc(input.value).catch((err)=>{
+                console.log(err)
+                errMessage.textContent = err.message
+                errMessage.classList.toggle("hidden")
+            })
+        }
     })
 
     button.appendChild(icon)
